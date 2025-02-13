@@ -3,11 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
-  const { name, email, password, confirmPassword } = req.body;
-
-  if (password !== confirmPassword) {
-    return res.status(400).json({ message: "Passwords do not match!" });
-  }
+  const { name, email, password } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
@@ -56,7 +52,7 @@ const loginUser = async (req, res) => {
 };
 
 const getToken = async (req, res) => {
-  const userId = req.user.id; // Get user ID from JWT
+  const userId = req.user.id;
 
   try {
     const user = await User.findById(userId);
