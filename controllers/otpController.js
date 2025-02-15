@@ -18,7 +18,7 @@ const sendOTPEmail = async (email, otp) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: 'Your OTP for Verification',
+        subject: 'Your OTP for FoodGo Login Verification',
         text: `Your OTP is: ${otp}. This OTP will expire in 5 minutes.`
     };
 
