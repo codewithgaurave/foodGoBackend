@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
     }
 
     if (req.file) {
-      imageUrl = `/uploads/${req.file.filename}`;
+      imageUrl = `/uploads/images/${req.file.filename}`;
       console.log("Image saved:", imageUrl);
     } else {
       console.log("No image file received");
@@ -84,7 +84,7 @@ const updateProfile = async (req, res) => {
 
   try {
     if (req.file) {
-      imageUrl = `/uploads/${req.file.filename}`;
+      imageUrl = `/uploads/images/${req.file.filename}`;
     }
 
     const updatedUser = await User.findByIdAndUpdate(
