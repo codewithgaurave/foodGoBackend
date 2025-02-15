@@ -8,7 +8,7 @@ const {
   getUserById,
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
-const uploadMiddleware = require("../middleware/multerConfig");
+const {uploadMiddleware} = require("../middleware/multerConfig");
 
 const router = express.Router();
 
