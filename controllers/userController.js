@@ -128,6 +128,22 @@ const updatePassword = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "User not found!" });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    res.json({ message: "Password reset successfully!" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-password");
@@ -146,5 +162,6 @@ module.exports = {
   logoutUser,
   updateProfile,
   updatePassword,
+  forgotPassword,
   getUserById,
 };

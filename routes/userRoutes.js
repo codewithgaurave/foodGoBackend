@@ -6,9 +6,10 @@ const {
   updateProfile,
   updatePassword,
   getUserById,
+  forgotPassword,
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
-const {uploadMiddleware} = require("../middleware/multerConfig");
+const { uploadMiddleware } = require("../middleware/multerConfig");
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.post("/login", loginUser);
 router.post("/logout", protect, logoutUser);
 router.put("/profile", protect, uploadMiddleware, updateProfile);
 router.put("/password", protect, updatePassword);
+router.post("/forgot-password", forgotPassword);
 router.get("/:id", protect, getUserById);
 
 router.post("/test-upload", uploadMiddleware, (req, res) => {
